@@ -1,0 +1,38 @@
+{
+  "name": "discord-rss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "tsx watch src/bot.ts",
+    "start": "node dist/bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OleKodehode/discord-rss.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/OleKodehode/discord-rss/issues"
+  },
+  "homepage": "https://github.com/OleKodehode/discord-rss#readme",
+  "dependencies": {
+    "better-sqlite3": "^12.9.0",
+    "discord.js": "^14.26.4",
+    "dotenv": "^17.4.2",
+    "node-cron": "^4.2.1",
+    "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.6.2",
+    "@types/node-cron": "^3.0.11",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}
