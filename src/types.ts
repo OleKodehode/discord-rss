@@ -11,3 +11,15 @@ export interface Subscription {
   lastError: string | null; // In case of errors
   createdAt: string; // ISO timestamp
 }
+
+export interface FeedItem {
+  title: string;
+  link: string; // URL for the item
+  pubDate: string; // Timestamp
+  guid?: string; // If available
+  contentSnippet: string; // Brief text snippet of the content
+}
+
+export function getItemId(item: FeedItem): string {
+  return item.guid ?? item.link;
+}
