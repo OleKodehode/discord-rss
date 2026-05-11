@@ -20,6 +20,6 @@ export interface DbAdapter {
   removeSubscription(id: string): Promise<void>;
   /** This is updated by the scheduler, keeps track of the last post to avoid duplicates. */
   updateLastSeen(id: string, lastSeenId: string): Promise<void>;
-  /** This is updated by the scheduler if there is any error. (I.E no response from the source) */
-  updateLastError(id: string, lastError: string): Promise<void>;
+  /** This is updated by the scheduler if there is any error. (I.E no response from the source). Null is used for reseting.*/
+  updateLastError(id: string, lastError: string | null): Promise<void>;
 }

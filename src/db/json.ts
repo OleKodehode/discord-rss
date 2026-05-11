@@ -80,7 +80,7 @@ export class JsonAdapter implements DbAdapter {
     await this.save();
   }
 
-  async updateLastError(id: string, lastError: string): Promise<void> {
+  async updateLastError(id: string, lastError: string | null): Promise<void> {
     this.subscriptions = this.subscriptions.map((entry) =>
       entry.id === id ? { ...entry, lastError } : entry,
     );

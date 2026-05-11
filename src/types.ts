@@ -1,4 +1,5 @@
-export type FeedInterval = 15 | 30 | 60;
+export const FEED_INTERVALS = [15, 30, 60] as const; // Change these values if you want to change the intervals
+export type FeedInterval = (typeof FEED_INTERVALS)[number];
 
 export interface Subscription {
   id: string; // individual ids for subscriptions
