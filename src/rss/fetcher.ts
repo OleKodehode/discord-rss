@@ -13,6 +13,7 @@ export async function fetchFeed(url: string): Promise<FeedItem[]> {
         pubDate: item.pubDate ?? "",
         contentSnippet: item.contentSnippet ?? "",
         guid: item.guid,
+        content: item.content ?? "",
       };
       return { ...feedItem, guid: getItemId(feedItem) };
     });

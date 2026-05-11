@@ -18,6 +18,7 @@ export interface FeedItem {
   pubDate: string; // Timestamp
   guid?: string; // If available
   contentSnippet: string; // Brief text snippet of the content
+  content?: string;
 }
 
 export function getItemId(item: FeedItem): string {
