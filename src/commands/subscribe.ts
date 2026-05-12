@@ -2,6 +2,7 @@ import type { ChatInputCommandInteraction } from "discord.js";
 import type { DbAdapter } from "../db/adapter.js";
 import { PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { FEED_INTERVALS, type FeedInterval } from "../types.js";
+import { createSubscription } from "./helpers.js";
 
 const intervalChoices = FEED_INTERVALS.map((interval) => ({
   name: `${interval} minutes`,
@@ -56,32 +57,13 @@ export async function execute(
     return;
   }
 
-  try {
-    new URL(url);
-  } catch {
-    await interaction.reply({ content: "Invalid URL", flags: "Ephemeral" });
-    return;
-  }
-
-  const filters = filter
-    ? filter
-        .split(",")
-        .map((key) => key.trim())
-        .filter(Boolean) // Should filter out empty strings
-    : [];
-
-  await db.addSubscription({
-    guildId: guildId,
-    channelId: channelId,
-    feedUrl: url,
-    filter: filters,
-    interval: interval,
-    lastSeenId: null,
-    lastError: null,
-  });
-
-  await interaction.reply({
-    content: `Ok - I've added ${url} to this server's subscriptions using this channel`,
-    flags: "Ephemeral",
-  });
+  await createSubscription(
+    interaction,
+    db,
+    url,
+    interval,
+    filter,
+    guildId,
+    channelId,
+  );
 }
