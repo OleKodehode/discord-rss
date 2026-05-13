@@ -32,17 +32,17 @@ export const data = new SlashCommandBuilder()
   )
   .addStringOption((option) =>
     option
+      .setName("channel-name")
+      .setDescription("The name of the channel you want the RSS feed in")
+      .setRequired(true),
+  )
+  .addStringOption((option) =>
+    option
       .setName("filter")
       .setDescription(
         "Keywords to filter by - Comma separated. Example: junior, developer, oslo",
       )
       .setRequired(false),
-  )
-  .addStringOption((option) =>
-    option
-      .setName("channel-name")
-      .setDescription("The name of the channel you want the RSS feed in")
-      .setRequired(true),
   );
 
 export async function execute(
