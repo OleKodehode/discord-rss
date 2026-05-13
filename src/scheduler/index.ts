@@ -77,15 +77,17 @@ async function processFeed(
           ? filtered
           : filtered.slice(0, previousPost);
 
+    newItems.reverse();
+
     // Post each new item to subscription.channelId
-    for (const item of newItems.reverse()) {
+    for (const item of newItems) {
       const embed = buildEmbed(item);
       await textChannel.send({ embeds: [embed] });
     }
 
     // Update lastSeenId to the newest item
     if (newItems.length > 0)
-      await db.updateLastSeen(sub.id, getItemId(newItems[0]));
+      await db.updateLastSeen(sub.id, getItemId(newItems[newItems.length - 1]));
 
     // reset lastError to null if there was a previous error.
     if (sub.lastError) await db.updateLastError(sub.id, null);
