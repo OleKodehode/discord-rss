@@ -71,10 +71,14 @@ async function processFeed(
       (item) => getItemId(item) === sub.lastSeenId,
     );
     const newItems =
-      previousPost === -1 ? [filtered[0]] : filtered.slice(0, previousPost);
+      sub.lastSeenId === null
+        ? [filtered[0]]
+        : previousPost === -1
+          ? filtered
+          : filtered.slice(0, previousPost);
 
     // Post each new item to subscription.channelId
-    for (const item of newItems) {
+    for (const item of newItems.reverse()) {
       const embed = buildEmbed(item);
       await textChannel.send({ embeds: [embed] });
     }
