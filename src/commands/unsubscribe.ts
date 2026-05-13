@@ -25,6 +25,7 @@ export async function execute(
 ) {
   const channel = interaction.options.getChannel("channel", true);
   const toDelete = interaction.options.getBoolean("delete-channel");
+  const channelRef = toDelete ? `#${channel.name}` : `<#${channel.id}>`;
 
   const guildId = interaction.guildId;
 
@@ -63,6 +64,6 @@ export async function execute(
   if (toDelete) await fullChannel?.delete();
 
   await interaction.reply({
-    content: `I've unsubscribed ${subscription.feedUrl} from <#${channel.id}>. ${toDelete ? "The channel has been deleted." : ""}`,
+    content: `I've unsubscribed ${subscription.feedUrl} from ${channelRef}. ${toDelete ? "The channel has been deleted." : ""}`,
   });
 }
