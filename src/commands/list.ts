@@ -47,5 +47,5 @@ export async function execute(
     });
   }
 
-  await interaction.reply({ embeds: [embed] });
+  await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
 }
