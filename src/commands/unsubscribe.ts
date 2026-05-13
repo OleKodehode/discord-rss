@@ -65,5 +65,6 @@ export async function execute(
 
   await interaction.reply({
     content: `I've unsubscribed ${subscription.feedUrl} from ${channelRef}. ${toDelete ? "The channel has been deleted." : ""}`,
+    flags: "Ephemeral",
   });
 }
