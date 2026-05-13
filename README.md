@@ -9,6 +9,8 @@ a self-hosted Discord bot written with TS that monitors RSS feeds and posts upda
 - Supports multiple servers (goes by guildID and channelID)
 - JSON Database included (Proof of concept - see limitations)
 
+All commands have the `Ephemeral` flag, making the bot's replies to slash-commands only visible to the user of the bot. This could be changed within each script in the `src/commands` folder
+
 ## Setup
 
 ### Requirements
@@ -47,6 +49,8 @@ If the RSS feed you want to monitor is particularly active, it might end up miss
 This is a known limitation to RSS.
 You can compensate by changing the feedinterval in the code, but I've set it to 15/30/60 minutes to limit the amount of polling it does, to avoid any potential rate limits and such.
 if you do change it, be reasonable.
+
+I only had time to implement a JSON adapter for the database. The JSON database is loaded into memory as well, and writes to the JSON file whenever there are changes. This shouldn't be used a more long term database - Consider implementing a DbAdapter for `SQLite`, `MongoDB`, `Postgres` or any other database solution you want to use.
 
 Additionally, the bot won't immediately send the latest RSS update after subscribing to a new RSS feed. It's something I noticed too late unfortunately.
 
